@@ -1,0 +1,1 @@
+const {getStudents, getStudentById, createStudent, updateStudent, deleteStudent} = require('../Services/studentService');

@@ -1,0 +1,3 @@
+# Ignore dependencies and specstory files
+.specstory/
+node_modules/

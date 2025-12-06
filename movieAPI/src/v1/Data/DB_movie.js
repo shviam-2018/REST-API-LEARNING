@@ -1,8 +1,8 @@
 let movies = [
     { id: 1, title: 'Johnny English', director: 'Peter Howitt', year: 2003 },
     { id: 2, title: 'Singham', director: 'Rohit Shetty', year: 2011 },
-    { id: 3, title: 'The Artifice Girl', director: 'Franklin Ritch', year: 2022 },
-    { id: 4, title: '1920 London', director: 'Tinu Suresh Desai', year: 2016 },
+    { id: 3, title: 'Golmaal: Fun Unlimited', director: 'Rohit Shetty', year: 2006 },
+    { id: 4, title: 'Terminator 3: Rise of the Machines', director: 'Jonathan Mostow', year: 2003 },
     { id: 5, title: 'Aashiqui 2', director: 'Mohit Suri', year: 2013 },
 ];
 
@@ -14,7 +14,7 @@ const getAllMovies = () => {
 // Add movie
 const addMovie = (movie) => {
     const id = movies.length ? movies[movies.length - 1].id + 1 : 1; // Ensure the ID is unique by checking the length of the movies array
-    const newMovie = { id, director, year, ...movie };
+    const newMovie = { id, ...movie };
     movies.push(newMovie);
     return newMovie;
 }
@@ -24,6 +24,13 @@ const getMovieById = (id) => {
     id = parseInt(id);
     if (isNaN(id)) return null; // Return null if id is not a number
     return movies.find((movie) => movie.id === id); // // Ensure the id is a number with parseInt
+}
+
+// GET movies by year
+const getMoviesByYear = (year) => {
+    year = parseInt(year);
+    if (isNaN(year)) return null; // Return null if year is not a number
+    return movies.filter((movie) => movie.year === year);
 }
 
 // GET movie by director
@@ -67,6 +74,7 @@ module.exports = {
     getMoviesByDirector,
     addMovie,
     getMovieById,
+    getMoviesByYear,
     deleteMovieById,
     updateMovieById
 }

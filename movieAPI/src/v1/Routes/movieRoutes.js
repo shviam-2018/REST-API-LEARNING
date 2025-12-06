@@ -1,5 +1,5 @@
 const express = require('express');
-const { fetchAllMovies, fetchMovieById, fetchMoviesByDirector, createMovie, modifyMovieById, removeMovieById } = require('../Controllers/movieController');
+const { fetchAllMovies, fetchMovieById, fetchMoviesByDirector, createMovie, modifyMovieById, fetchMoviesByYear, removeMovieById } = require('../Controllers/movieController');
 
 const router = express.Router();
 
@@ -7,6 +7,7 @@ const router = express.Router();
 router.get('/', fetchAllMovies);
 router.get('/:id', fetchMovieById);
 router.get('/director/:director', fetchMoviesByDirector);
+router.get('/year/:year', fetchMoviesByYear);
 router.post('/', createMovie);
 router.put('/:id', modifyMovieById);
 router.delete('/:id', removeMovieById);

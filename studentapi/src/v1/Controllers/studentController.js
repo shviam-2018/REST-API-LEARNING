@@ -59,6 +59,7 @@ const deleteStudentObject = async (req, res) => {
     }
 };
 
+
 module.exports = {
     getAllStudents,
     getSingleStudent,

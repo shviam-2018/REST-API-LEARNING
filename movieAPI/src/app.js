@@ -8,7 +8,7 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-// Routes
+// Routesa
 app.use('/api/v1/movies', movieRoutes);
 
 app.listen(3000, () => {

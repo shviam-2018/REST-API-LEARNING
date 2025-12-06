@@ -1,4 +1,4 @@
-const {getMoviesByDirector, getAllMovies, addMovie, getMovieById, deleteMovieById, updateMovieById} = require('../Data/DB_movie');
+const {getMoviesByDirector, getAllMovies, addMovie, getMovieById, deleteMovieById, updateMovieById, getMoviesByYear} = require('../Data/DB_movie');
 
 // Get all movies
 const fetchAllMovies = async (req, res) => {
@@ -43,9 +43,6 @@ const createMovie = async (req, res) => {
         const newMovie = await addMovie({ director, year, title });
         res.status(201).json({ success: true, data: newMovie });
     } catch (error) {
-        if (!director || !year || !title) {
-            return res.status(400).json({ success: false, error: 'Director, year, and title are required' });
-        }
         res.status(500).json({ success: false, error: 'Failed to add movie' });
     }
 };
@@ -62,6 +59,17 @@ const modifyMovieById = async (req, res) => {
             return res.status(400).json({ success: false, error: 'Movie ID does not exist' });
         }
         res.status(500).json({ success: false, error: 'Failed to update movie' });
+    }
+}
+
+// GET movies by year
+const fetchMoviesByYear = async (req, res) => {
+    try {
+        const {year} = req.params;
+        const movies = await getMoviesByYear(year);
+        res.status(200).json({success: true, data: movies});
+    } catch (error) {
+        res.status(500).json({ success: false, error: 'Failed to fetch movies by year' });
     }
 }
 
@@ -82,5 +90,6 @@ module.exports = {
     fetchMoviesByDirector,
     createMovie,
     modifyMovieById,
+    fetchMoviesByYear,
     removeMovieById
 };
